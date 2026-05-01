@@ -69,7 +69,7 @@ tbody tr:last-child td {
     background: #157a63;
 }
 
-.pagination span {
+.page-number {
     background: #1a9e7f;
     color: #fff;
     padding: 8px 14px;

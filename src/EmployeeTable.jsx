@@ -46,7 +46,7 @@ export default function EmployeeTable() {
             </table>
             <div className="pagination">
                 <button onClick={() => setPage((p) => Math.max(p - 1, 1))}>Previous</button>
-                <span>{page}</span>
+                <p className="page-number">{page}</p>
                 <button onClick={() => setPage((p) => Math.min(p + 1, totalPages))}>Next</button>
             </div>
         </div>
