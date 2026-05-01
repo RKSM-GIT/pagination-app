@@ -18,8 +18,16 @@ export default function EmployeeTable() {
             .catch(() => alert("failed to fetch data"));
     }, []);
 
-    const totalPages = Math.ceil(employees.length / PAGE_SIZE);
+    const totalPages = Math.ceil(employees.length / PAGE_SIZE) || 1;
     const rows = employees.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+    const handlePrev = () => {
+        if (page > 1) setPage((p) => p - 1);
+    };
+
+    const handleNext = () => {
+        if (page < totalPages) setPage((p) => p + 1);
+    };
 
     return (
         <div className="container">
@@ -45,9 +53,13 @@ export default function EmployeeTable() {
                 </tbody>
             </table>
             <div className="pagination">
-                <button onClick={() => setPage((p) => Math.max(p - 1, 1))}>Previous</button>
-                <p className="page-number">{page}</p>
-                <button onClick={() => setPage((p) => Math.min(p + 1, totalPages))}>Next</button>
+                <button onClick={handlePrev} disabled={page === 1}>
+                    Previous
+                </button>
+                <span className="page-number">{page}</span>
+                <button onClick={handleNext} disabled={page === totalPages}>
+                    Next
+                </button>
             </div>
         </div>
     );
